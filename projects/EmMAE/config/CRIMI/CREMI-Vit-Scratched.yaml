@@ -1,0 +1,7 @@
+DATASET:
+  OUTPUT_PATH: /ygs/personal/chengao/connectomics_project/ft_model/unetr_cremi_downsampled_bce/
+INFERENCE:
+  OUTPUT_ACT: ["sigmoid"]
+  OUTPUT_PATH: outputs/CREMI/Vit_scratch/
+MAE:
+  PRETRAIN: False

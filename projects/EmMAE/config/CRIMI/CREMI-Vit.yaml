@@ -1,0 +1,5 @@
+DATASET:
+  OUTPUT_PATH: /ygs/personal/chengao/connectomics_project/ft_model/unetr_cremi_pt_downsampled_bce/
+INFERENCE:
+  OUTPUT_ACT: ["sigmoid"]
+  OUTPUT_PATH: outputs/CREMI/Vit/

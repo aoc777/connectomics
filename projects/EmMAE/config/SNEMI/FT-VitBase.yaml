@@ -1,0 +1,33 @@
+SYSTEM:
+  NUM_GPUS: 6
+  NUM_CPUS: 8
+MODEL:
+  INPUT_SIZE: [6, 96, 96]
+  OUTPUT_SIZE: [6, 96, 96]
+  IN_PLANES: 1
+DATASET:
+  INPUT_PATH: /path/to/dataset/
+  IMAGE_NAME: train-image.tif
+  LABEL_NAME: train-label.tif
+  PAD_SIZE: [4, 64, 64]
+  DISTRIBUTED: True
+SOLVER:
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  BASE_LR: 0.02
+  ITERATION_STEP: 1
+  ITERATION_SAVE: 10000
+  ITERATION_TOTAL: 200000
+  SAMPLES_PER_BATCH: 4
+MONITOR:
+  ITERATION_NUM: [200, 1000]
+INFERENCE:
+  INPUT_SIZE:   [6, 96, 96]
+  OUTPUT_SIZE:  [6, 96, 96]
+  IMAGE_NAME: test-input.tif
+  OUTPUT_PATH: outputs/ftvit_affinity/
+  OUTPUT_NAME: result
+  PAD_SIZE: [3, 48, 48]
+  AUG_MODE: mean
+  AUG_NUM: 4
+  STRIDE: [3, 48, 48]
+  SAMPLES_PER_BATCH: 18

@@ -1,0 +1,26 @@
+SYSTEM:
+  NUM_GPUS: 6
+  NUM_CPUS: 8
+MODEL:
+  INPUT_SIZE: [6, 96, 96]
+  OUTPUT_SIZE: [6, 96, 96]
+  IN_PLANES: 1
+DATASET:
+  INPUT_PATH: /ygs/personal/chengao/mae-main/dataset/
+  IMAGE_NAME: train-input.tif
+  OUTPUT_PATH: /ygs/personal/chengao/connectomics_project/mae_model/iter2/
+  PAD_SIZE: [0, 0, 0]
+  DISTRIBUTED: True
+SOLVER:
+  NAME: AdamW
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  BASE_LR: 1e-4
+  WARMUP_ITERS: 100000
+  ITERATION_STEP: 1
+  ITERATION_SAVE: 20000
+  ITERATION_TOTAL: 400000
+  SAMPLES_PER_BATCH: 16
+  WEIGHT_DECAY: 0.0
+MONITOR:
+  ITERATION_NUM: [100, 1000]
+

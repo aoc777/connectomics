@@ -1,0 +1,21 @@
+MODEL:
+  OUT_PLANES: 3
+  TARGET_OPT: ["0", "4-1-1", "6"]
+  LOSS_OPTION:
+    - - WeightedBCEWithLogitsLoss
+      - DiceLoss
+    - - WeightedBCEWithLogitsLoss
+      - DiceLoss
+    - - WeightedMSE
+  LOSS_WEIGHT: [[1.0, 0.5], [1.0, 0.5], [5.0]]
+  WEIGHT_OPT: [["1", "0"], ["1-1", "0"], ["0"]]
+  OUTPUT_ACT: [["none", "sigmoid"], ["none", "sigmoid"], ["tanh"]]
+  LABEL_EROSION: 1
+DATASET:
+  INPUT_PATH: /ygs/personal/linjun/dataset/MitoEM-R/
+  OUTPUT_PATH: /ygs/personal/chengao/connectomics_project/Scratch_model/unetr_BCD_mito_large/
+INFERENCE:
+  OUTPUT_ACT: ["sigmoid", "sigmoid", "tanh"]
+  OUTPUT_PATH: outputs/mito_BCD/scratched3/
+MAE:
+  PRETRAIN: False

@@ -1,0 +1,22 @@
+MODEL:
+  OUT_PLANES: 2
+  TARGET_OPT: ["0", "4-1-1"]
+  LOSS_OPTION:
+    - - WeightedBCEWithLogitsLoss
+      - DiceLoss
+    - - WeightedBCEWithLogitsLoss
+      - DiceLoss
+  LOSS_WEIGHT: [[1.0, 0.5], [1.0, 0.5]]
+  WEIGHT_OPT: [["1", "0"], ["1", "0"]]
+  OUTPUT_ACT: [["none", "sigmoid"], ["none", "sigmoid"]]
+  LABEL_EROSION: 1
+DATASET:
+  INPUT_PATH: /ygs/personal/linjun/dataset/MitoEM-R/
+  OUTPUT_PATH: /ygs/personal/chengao/connectomics_project/ft_model/unetr_BC_mito_large_sgd/
+INFERENCE:
+  OUTPUT_ACT: ["sigmoid", "sigmoid"]
+  OUTPUT_PATH: outputs/mito_BCD/pretrained_vali_large/
+
+MAE:
+  MODEL: 'vit-large' # modify pre-trained backbone here
+  PRETRAIN: False # for training from scratch

@@ -1,0 +1,35 @@
+SYSTEM:
+  NUM_GPUS: 6
+  NUM_CPUS: 16
+MODEL:
+  INPUT_SIZE: [6, 96, 96]
+  OUTPUT_SIZE: [6, 96, 96]
+  IN_PLANES: 1
+DATASET:
+  IMAGE_NAME: ["im_train.json"]
+  LABEL_NAME: ["mito_train.json"]
+  INPUT_PATH: /ygs/personal/chengao/MitoEm_R/ # or your own dataset path
+  OUTPUT_PATH: outputs/MitoEM/
+  PAD_SIZE: [3, 32, 32]
+  DO_CHUNK_TITLE: 1
+  DATA_SCALE: [1., 0.5, 0.5]
+  DATA_CHUNK_NUM: [4, 8, 8]
+  DATA_CHUNK_ITER: 5000
+SOLVER:
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  BASE_LR: 0.04
+  ITERATION_STEP: 1
+  ITERATION_SAVE: 10000
+  ITERATION_TOTAL: 400000
+  SAMPLES_PER_BATCH: 3
+INFERENCE:
+  INPUT_SIZE:   [6, 96, 96]
+  OUTPUT_SIZE:  [6, 96, 96]
+  IMAGE_NAME: im_val.json
+  OUTPUT_PATH: outputs/MitoEM/test2/
+  OUTPUT_NAME: result # will automatically save to HDF5
+  PAD_SIZE: [3, 32, 32]
+  AUG_MODE: mean
+  AUG_NUM: 4
+  STRIDE: [3, 48, 48]
+  SAMPLES_PER_BATCH: 18

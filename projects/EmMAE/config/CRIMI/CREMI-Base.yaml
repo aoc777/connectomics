@@ -1,0 +1,52 @@
+# All other configurations are set by default. If you want to add new config options,
+# please modify ../connectomics/config/defaults.py
+SYSTEM:
+  NUM_GPUS: 2
+  NUM_CPUS: 12
+MODEL:
+  INPUT_SIZE: [6, 96, 96]
+  OUTPUT_SIZE: [6, 96, 96]
+  IN_PLANES: 1
+#  TARGET_OPT: ["0"]
+#  LOSS_OPTION: [["WeightedBCEWithLogitsLoss", "DiceLoss"]]
+#  LOSS_WEIGHT: [[1.0, 1.0]]
+#  WEIGHT_OPT: [["1", "0"]]
+#  OUTPUT_ACT: [["none", "sigmoid"]]
+  TARGET_OPT: ["0"]
+  LOSS_OPTION: [["WeightedBCEWithLogitsLoss"]]
+  LOSS_WEIGHT: [[1.0]]
+  WEIGHT_OPT: [["1"]]
+  OUTPUT_ACT: [["none"]]
+DATASET:
+  IMAGE_NAME: im_A.h5@im_B.h5@im_C.h5
+  LABEL_NAME: syn_A.h5@syn_B.h5@syn_C.h5
+  INPUT_PATH: /ygs/personal/chengao/connectomics_project/datasets/corrected/
+  OUTPUT_PATH: outputs/CREMI_syn_baseline
+  PAD_SIZE: [0, 32, 32]
+  DATA_SCALE: [1., 0.5, 0.5]
+  REJECT_SAMPLING:
+    SIZE_THRES: 1000
+    P: 0.95
+  DISTRIBUTED: False
+AUGMENTOR:
+  MISSINGPARTS:
+    ENABLED: False
+SOLVER:
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  BASE_LR: 0.02
+  ITERATION_STEP: 1
+  ITERATION_SAVE: 5000
+  ITERATION_TOTAL: 150000
+  SAMPLES_PER_BATCH: 2
+INFERENCE:
+  INPUT_SIZE: [6, 96, 96]
+  OUTPUT_SIZE: [6, 96, 96]
+  OUTPUT_ACT: ["sigmoid"]
+  IMAGE_NAME: images/im_A+_v2_200_nocrack.h5@images/im_B+_v2_200.h5@images/im_C+_v2_200.h5
+  OUTPUT_PATH: outputs/CREMI_syn_baseline/test
+  DO_SINGLY: True
+  PAD_SIZE: [0, 32, 32]
+  AUG_MODE: mean
+  AUG_NUM: 8
+  STRIDE: [3, 48, 48]
+  SAMPLES_PER_BATCH: 8

@@ -38,3 +38,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u projects/EmMAE/main.py \
 --config-file projects/EmMAE/config/SNEMI/FT-VitBase-Affinity.yaml \
 --checkpoint path/to/your/checkpoint
 ```
+### Dataset
+
+[**SNEMI3D**](https://snemi3d.grand-challenge.org/): 3D Segmentation of neurites in EM images (ISBI 2013) 
+
+[**MitoEM**](https://mitoem.grand-challenge.org/): Large-scale 3D Mitochondria Instance Segmentation (ISBI 2021)
